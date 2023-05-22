@@ -1,4 +1,5 @@
 package ru.netology;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,13 +11,18 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class FormTest {
     private WebDriver driver;
 
+
     @BeforeAll
     static void setUpAll() {
-        System.setProperty("webdriver.chrome.driver", "C:\\tmp\\chromedriver.exe");
+        WebDriverManager.chromedriver().create();
+        //System.setProperty("webdriver.chrome.driver", "C:\\tmp\\chromedriver.exe");
     }
+
     @BeforeEach
     void setUp() {
         ChromeOptions options = new ChromeOptions();
@@ -25,11 +31,13 @@ public class FormTest {
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
     }
+
     @AfterEach
     void tearDown() {
         driver.quit();
         driver = null;
     }
+
     @Test
     void shouldTestSomething() {
         driver.get("http://localhost:9999");
@@ -37,10 +45,11 @@ public class FormTest {
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79112825252");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.className("button")).click();
-        String expected ="Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
-        String actual =driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
-        assertEquals(expected,actual);
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
+        assertEquals(expected, actual);
     }
+
     @Test
     void shouldTestIFSpaceInName() {
         driver.get("http://localhost:9999");
@@ -48,10 +57,11 @@ public class FormTest {
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79112825252");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.className("button")).click();
-        String expected ="Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
-        String actual =driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
-        assertEquals(expected,actual);
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
+        assertEquals(expected, actual);
     }
+
     @Test
     void shouldTestIFDoubleName() {
         driver.get("http://localhost:9999");
@@ -59,8 +69,8 @@ public class FormTest {
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79112825252");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.className("button")).click();
-        String expected ="Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
-        String actual =driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
-        assertEquals(expected,actual);
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
+        assertEquals(expected, actual);
     }
 }

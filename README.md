@@ -1,0 +1,1 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/lx8kjqahrre1ngn8?svg=true)](https://ci.appveyor.com/project/Lambonik/at-homework2-1)
